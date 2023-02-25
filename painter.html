@@ -7,31 +7,29 @@
 <h2>Getting input</h2>
 
 <form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
-
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
-
-    <input type="button" onclick="resolveForm()" value="Get values from form">
+    <label for="form1_name">The hidden painter name:</label>
+    <input type ="password" id="hidden" name="form1_name"  value=Monet min=5 max=25> 
+<br><br>
+    <label for="form1_guess">Guess the painter:</label>
+    <input type ="text" id="checkInput"  name="form1_guess" autofocus> 
+<br><br>
+    <input type="button" onclick="checkPainter()" value="Check the guess">
 </form>
-
-
-<p id="result">This text will be replaced </p>
-
+<div id="results">Results</div>
 <script> 
-
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
+var good=0;
+var oops=0;
+function  checkPainter(){
+    R1= document.getElementById("hidden").value
+    R2 = document.getElementById("checkInput").value
+    if(R1==R2){
+        good=good+1
+        alert("“You got it right.")
+        results.innerHTML="Count value for good is : "+good
     } else {
-        out.innerHTML = "Values were not confirmed"
+        oops=oops+1
+        alert("Sorry")
+        results.innerHTML="Count value for oops is : "+oops
     }
 }
 </script>
