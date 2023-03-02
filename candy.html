@@ -19,8 +19,21 @@
 
     <input type="button" value="Select a box" onclick="selectBox()">
 </form>
+<div id="output"></div>
 <br>
-<div id="output">Result</div>
+<br>
+<form>
+    <label for="P1">Enter the size: </label>
+    <input type="text" id="P1" name="property" value="size"> 
+    <br>
+    
+    <label for="P2">Enter price: </label>
+    <input type="text" id="P2" name="price"> 
+    <br>
+
+    <input type="button" value="Update the box" onclick="updateBox()">
+</form>
+
 
 <script> 
 let my_candy_box={};
@@ -56,9 +69,14 @@ function selectBox()
         }
         document.getElementById("output").innerHTML=JSON.stringify(my_candy_box)
     } 
+    function updateBox()
+    {
+        let property=document.getElementById("P1").value;
+        let price=document.getElementById("P2").value;
+        my_candy_box["P1"]=property;
+        my_candy_box["P2"]=price;
+        document.getElementById("output").innerHTML=JSON.stringify(my_candy_box)
+    }
 </script>
-
-
-
 </body>
 </html> 
