@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+ <head><title>Conversions</title></head>
+<body>
+<h2>Naga Lakshmi shows currency conversions</h2>
+<label for="o/p">Enter base amount:</label>
+<input type="number" id="o/p" value="50">
+<br>
+
+<label for="o/p2">Enter the conversion rate:</label>
+<input type="number" id="o/p2" value="35">
+<br>
+
+<button onclick="convert()">Show conversions:</button>
+<br>
+<p id="Conversion"></p>
+<script>
+    function convert() {
+        const base = document.getElementById("o/p").value;
+        const conversion = document.getElementById("o/p2").value;
+        let toShow = "";
+        for (let i = 1; i <= 5; i++) {
+            const value = base * Math.pow(2, i-1);
+            const convertedValue = value * conversion ;
+            toShow += `${value} is ${convertedValue}; `;
+        }
+        document.getElementById("Conversion").innerHTML = "Conversions are: " + toShow;
+    }
+</script>
+
+<form>
+    <label for="mean"><input type="radio" id="mean" name="operation" value="mean" onClick="chooseOp()">average</label>
+    <br>
+    <label for="maximum"><input type="radio" id="maximum" name="operation" value="maximum" onClick="chooseOp()">max</label>
+    <br>
+    <label for="minimum"><input type="radio" id="minimum" name="operation" value="minimum" onClick="chooseOp()">min</label>
+    <br>
+</form>
+
+<script>
+    function chooseOp() {
+        const base = parseFloat(document.getElementById("o/p").value);
+        const conversion = parseFloat(document.getElementById("o/p2").value);
+        let output;
+        if (document.getElementById("mean").checked) {
+            output = (base + conversion) / 2;
+            document.getElementById("output").innerHTML = `mean of ${base} and ${conversion} is ${output}`;
+        } else if (document.getElementById("maximum").checked) {
+            output = Math.max(base, conversion);
+            document.getElementById("output").innerHTML = `max of ${base} and ${conversion} is ${output}`;
+        } else if (document.getElementById("minimum").checked) {
+            output = Math.min(base, conversion);
+            document.getElementById("output").innerHTML = `min of ${base} and ${conversion} is ${output}`;
+        }
+    }
+</script>
+<div id="output"></div>
+
+</body>
+</html> 
